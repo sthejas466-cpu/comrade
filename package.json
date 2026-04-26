@@ -1,0 +1,10 @@
+{
+  "name": "comrade",
+  "version": "1.0.0",
+  "description": "Root workspace for COMRADE app",
+  "scripts": {
+    "dev": "npm run dev:all",
+    "dev:all": "npx concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend"
+  }
+}
