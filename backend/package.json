@@ -4,8 +4,8 @@
   "description": "COMRADE Smart Emergency Response Network - Backend API",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+  "start": "node --experimental-sqlite server.js",
+  "dev": "node --experimental-sqlite server.js"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",
