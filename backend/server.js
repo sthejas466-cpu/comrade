@@ -24,6 +24,9 @@ if (CLIENT_ORIGINS.includes('http://localhost:5173') && !CLIENT_ORIGINS.includes
   CLIENT_ORIGINS.push('http://127.0.0.1:5173');
 }
 
+// Add the Vercel production domain to CORS
+CLIENT_ORIGINS.push('https://frontend-six-psi-83.vercel.app');
+
 // Guard against running in production without secrets set
 if (NODE_ENV === 'production') {
   if (!JWT_SECRET || JWT_SECRET.length < 32) {
