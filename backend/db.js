@@ -2,11 +2,11 @@ const bcrypt = require('bcryptjs');
 
 let dbCompat;
 
-// Use Postgres in production or if DATABASE_URL is explicitly set
-if (process.env.NODE_ENV === 'production' || process.env.DATABASE_URL) {
+// Use Postgres only if DATABASE_URL is explicitly set
+if (process.env.DATABASE_URL) {
   const { Pool } = require('pg');
   const pool = new Pool({
-    connectionString: process.env.DATABASE_URL || 'postgres://localhost:5432/comrade',
+    connectionString: process.env.DATABASE_URL,
     ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
   });
 
@@ -64,9 +64,10 @@ if (process.env.NODE_ENV === 'production' || process.env.DATABASE_URL) {
     },
   };
 } else {
-  // Graceful fallback to SQLite for local development
+  // Use SQLite (graceful fallback or explicitly requested for deployment)
   const Database = require('better-sqlite3');
-  const db = new Database('./comrade.db');
+  const dbPath = process.env.SQLITE_DB_PATH || './comrade.db';
+  const db = new Database(dbPath);
 
   dbCompat = {
     prepare: (sql) => {
