@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["python3", "gcc", "gnumake", "pkg-config", "binutils"]
+nixPkgs = ["...", "python3", "gcc", "gnumake", "pkg-config", "binutils"]
 
 [phases.install]
 cmds = ["npm install --build-from-source"]
